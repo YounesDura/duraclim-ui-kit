@@ -34,10 +34,10 @@ export default [
         modules: {
           generateScopedName: "[name]__[local]___[hash:base64:5]"
         },
-        extract: false, 
+        extract: "dist/styles.css",
+        inject: false,
         minimize: true,
         sourceMap: true,
-        inject: true, // Add this to automatically inject styles
       }),
     ],
     external: ["react", "react-dom"],
