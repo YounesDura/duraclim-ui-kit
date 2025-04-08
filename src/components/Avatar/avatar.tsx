@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './avatar.module.scss';
-import fallbackImage from '../../../assets/illustrations/person.png';
+import fallbackImage from '../../assets/illustrations/person.png';
 
 type AvatarSize = 'sm' | 'md' | 'lg';
 

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import styles from './container.module.scss';
 
 interface ContainerProps {
@@ -21,12 +21,7 @@ const getMaxWidth = (size: ContainerProps['maxWidth']) => {
   }
 };
 
-const Container = ({
-  children,
-  maxWidth = 'default',
-  padding = true,
-  className = '',
-}: ContainerProps) => {
+const Container: React.FC<ContainerProps> = ({ children, maxWidth, padding }) => {
   const combinedClasses = [
     styles.container,
     getMaxWidth(maxWidth),

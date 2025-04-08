@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styles from './Sidebar.module.scss';
 
 interface SidebarProps {

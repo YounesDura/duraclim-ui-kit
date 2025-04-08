@@ -1,5 +1,7 @@
 # Do not publish your local demo
 demo/
+src/**/*.test.tsx
+*.config.js
 vite.config.ts
 
 # Ignore dev configs
@@ -13,3 +15,4 @@ rollup.config.js
 .vscode/
 .idea/
 node_modules/
+
