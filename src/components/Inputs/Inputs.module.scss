@@ -1,0 +1,38 @@
+
+@use '../../../styles/variables.scss' as *;
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: $white;
+  border: 2px solid $gray-light;
+  border-radius: $radius-lg;
+  padding: 0 $padding-md;
+  height: 3.5rem;
+  transition: border $transition-fast;
+
+  &.focused {
+    border-color: $blue-primary;
+  }
+}
+
+.input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: $text-md;
+  color: $gray-dark;
+
+  &::placeholder {
+    color: $gray-dark;
+  }
+}
+
+.icon {
+  margin-left: $gap-sm;
+  font-size: 1.25rem;
+  color: $gray-light;
+}

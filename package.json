@@ -1,0 +1,33 @@
+{
+  "name": "duraclim-ui-kit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  "dev": "vite",
+  "build": "rollup -c",
+  "preview": "vite preview",
+  "type-check": "tsc --noEmit"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "sass": "^1.86.3",
+    "vite": "^6.2.5"
+  },
+  "peerDependencies": {
+  "react": "^18.0.0",
+  "react-dom": "^18.0.0"
+},
+"files": [
+  "dist",
+  "src",
+  "styles"
+]
+}

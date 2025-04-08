@@ -1,0 +1,27 @@
+.navbar {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    
+  }
+  
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .right {
+    div {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }

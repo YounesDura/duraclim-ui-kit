@@ -1,0 +1,15 @@
+# Do not publish your local demo
+demo/
+vite.config.ts
+
+# Ignore dev configs
+tsconfig.json
+rollup.config.js
+.gitignore
+
+
+# Build system folders
+.vite/
+.vscode/
+.idea/
+node_modules/

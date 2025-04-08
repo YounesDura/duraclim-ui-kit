@@ -1,0 +1,149 @@
+@use '../../../styles/variables.scss' as *;
+
+.card {
+  background-color: $white;
+  border: $border-width solid $gray-light;
+  border-radius: $radius-lg;
+  padding: $padding-md;
+  position: relative;
+  cursor: pointer;
+  transition: border $transition-fast;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &.active {
+    background-color: $blue-light;
+    border-color: $blue-primary;
+  }
+}
+
+.cardHeader {
+  position: absolute;
+  top: $padding-sm;
+  left: $padding-sm;
+  right: $padding-sm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid $gray-light;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  background-color: $white;
+
+  &.active {
+    border-color: $blue-primary;
+  }
+}
+
+.radioDot {
+  width: 10px;
+  height: 10px;
+  background-color: $blue-primary;
+  border-radius: 50%;
+}
+
+.editButton {
+  pointer-events: auto;
+  background: none;
+  border: none;
+  font-size: $text-md;
+  cursor: pointer;
+}
+
+.addedChip {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: $white;
+  padding: 0.2rem 0.6rem;
+  border-radius: $radius-full;
+  font-size: $text-sm;
+  gap: $gap-xs;
+  pointer-events: auto;
+}
+
+.addedGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.plus {
+  font-weight: bold;
+  font-size: $text-md;
+  color: $gray-light;
+  border: 2px solid $gray-light;
+  background-color: rgba($gray-light, 0.1);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color $transition-fast, border-color $transition-fast;
+}
+
+.plusActive {
+  color: $blue-primary;
+  border-color: $blue-primary;
+  background-color: rgba($blue-primary, 0.1);
+}
+
+.countChip {
+  display: flex;
+  align-items: center;
+  background-color: $blue-primary;
+  color: $white;
+  padding: 0.15rem 0.75rem;
+  border-radius: $radius-full;
+  font-size: $text-sm;
+  font-weight: 500;
+
+  .countNumber {
+    margin-right: 0.3rem;
+    font-weight: 600;
+  }
+
+  .countText {
+    opacity: 0.7;
+  }
+}
+
+.count {
+  white-space: nowrap;
+}
+
+.imageWrapper {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+
+  img {
+    max-width: 80px;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+.title {
+  font-size: $text-md;
+  color: $gray-dark;
+  margin-bottom: 0.5rem;
+}
+
+.price {
+  font-size: $text-lg;
+  font-weight: bold;
+  color: $black;
+}
+

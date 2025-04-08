@@ -1,0 +1,60 @@
+// Colors
+$blue-primary: #1868D2;
+$blue-light: rgba(24, 104, 210, 0.05);
+$green-success: #00D22A; // ✅ Added this
+$red-soft: rgba(255, 0, 0, 0.2);
+$gray-light: #E0E0E0;
+$gray-background: #f4f7fb;
+$gray-dark: #555555;
+$gray-light: #ececec;
+$white: #ffffff;
+$black: #000000;
+$deactivated: rgba(0, 0, 0, 0.1);
+
+// Border Radius
+$radius-lg: 0.5rem;
+$radius-full: 9999px;
+
+// Padding
+$padding-md: 1rem;
+
+// Font Sizes
+$text-sm: 0.875rem;
+$text-md: 1rem;
+$text-lg: 1.125rem;
+$text-xs: 0.625rem; // 10px
+$text-sm: 0.75rem;  // 12px
+$text-md: 1rem;     // 16px
+$text-lg: 1.25rem;  // 20px
+$text-xl: 1.5rem;   // 24px
+$text-2xl: 2rem;    // 32px
+
+// ---------------------------------------
+// 📏 Spacing & Sizing
+// ---------------------------------------
+
+$padding-sm: 0.5rem;
+$padding-md: 1rem;
+$padding-lg: 1.5rem;
+
+$gap-xs: 0.25rem;
+$gap-sm: 0.5rem;
+$gap-md: 1rem;
+$gap-lg: 2rem;
+
+// ---------------------------------------
+// 🎨 Borders & Radius
+// ---------------------------------------
+
+$border-width: 2px;
+$radius-sm: 0.5rem;
+$radius-md: 0.75rem;
+$radius-lg: 1rem;
+$radius-full: 999px;
+
+// ---------------------------------------
+// ⚡ Transitions
+// ---------------------------------------
+
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;

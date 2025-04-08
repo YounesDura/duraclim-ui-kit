@@ -1,0 +1,25 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  background-color: #cce6ff;
+}
+
+.navbar {
+  top: 0;
+  background-color: #fff;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar {
+}

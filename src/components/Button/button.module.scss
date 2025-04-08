@@ -1,0 +1,191 @@
+@use '../../../styles/variables.scss' as *;
+
+.button {
+  margin: 0.7rem 0;
+  padding: 0.7rem 1rem;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  border-radius: $radius-sm;
+  font-weight: 600;
+  font-size: $text-md;
+  transition: all $transition-fast;
+  background: transparent;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon + .text {
+  margin-left: $gap-sm;
+}
+
+// ---------------------------------------
+// 🎯 Button Variants
+// ---------------------------------------
+
+// Primary
+.primary {
+  background-color: $blue-primary;
+  color: $white;
+
+  &:hover {
+    background-color: color-mix(in srgb, $blue-primary, black 5%);
+  }
+}
+
+// Success
+.success {
+  background-color: $green-success;
+  color: $white;
+
+  &:hover {
+    background-color: color-mix(in srgb, $green-success, black 5%);
+  }
+}
+
+// Cancel
+.cancel {
+  background-color: $red-soft;
+  color: $white;
+
+  &:hover {
+    background-color: color-mix(in srgb, $red-soft, black 5%);
+  }
+}
+
+// Ghost
+.ghost {
+  background: transparent;
+  border: none;
+  color: $gray-dark;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// Deactivate
+.deactivate {
+  background-color: $deactivated;
+  color: $gray-dark;
+
+  &:hover {
+    background-color: color-mix(in srgb, $deactivated, black 5%);
+  }
+}
+
+// ---------------------------------------
+// ⬇️ Dropdown Variants
+// ---------------------------------------
+
+// Dropdown
+.dropdown {
+  background-color: $gray-light;
+  color: $gray-dark;
+  position: relative;
+
+  .dropdownContent {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .text {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .arrow {
+      margin-left: $gap-sm;
+      font-size: $text-sm;
+      color: $gray-dark;
+    }
+  }
+
+  .dropdownMenu {
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    padding: $padding-sm 0;
+    margin-top: 0.3rem;
+    background: $white;
+    border: 1px solid $gray-light;
+    border-radius: $radius-sm;
+    z-index: 100;
+
+    li {
+      padding: $padding-sm $padding-md;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $gray-background;
+      }
+    }
+  }
+
+  &:hover .dropdownMenu {
+    display: block;
+  }
+}
+
+// Dropdown Ghost
+.dropdownGhost {
+  background: transparent;
+  border: 1px solid $gray-light;
+  color: $black;
+  position: relative;
+
+  .dropdownContent {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .icon {
+      margin-right: $gap-sm;
+    }
+
+    .text {
+      font-weight: bold;
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .arrow {
+      margin-left: $gap-sm;
+      font-size: $text-sm;
+    }
+  }
+
+  .dropdownMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    list-style: none;
+    padding: $padding-sm;
+    margin: 0;
+    background: $white;
+    border: 1px solid $gray-light;
+    border-radius: $radius-sm;
+
+    li {
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $gray-background;
+      }
+    }
+  }
+
+  &:hover .dropdownMenu {
+    display: block;
+  }
+}
