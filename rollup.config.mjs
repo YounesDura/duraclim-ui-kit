@@ -31,7 +31,9 @@ export default [
       }),
       typescript({ tsconfig: "./tsconfig.json" }),
       postcss({
-        modules: true,
+        modules: {
+          generateScopedName: "[name]__[local]___[hash:base64:5]"
+        },
         extract: true,
         minimize: true,
         sourceMap: true,
