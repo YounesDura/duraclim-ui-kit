@@ -4,8 +4,6 @@ import styles from './Inputs.module.scss';
 type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search' | 'date';
 
 interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement | HTMLSelectElement>, 'type' | 'onChange'> {
-  type?: 'text' | 'email' | 'tel' | 'search' | 'url' | 'date';
-  onChange?: (value: string, isValid: boolean) => void;
   type?: InputType;
   placeholder?: string;
   icon?: ReactNode;
