@@ -1,6 +1,6 @@
 {
   "name": "duraclim-ui-kit",
-  "version": "1.0.6",
+  "version": "1.0.5",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./styles.css": "./dist/index.css"
+"./styles.css": "./dist/styles.css"
   },
   "scripts": {
     "dev": "vite",
