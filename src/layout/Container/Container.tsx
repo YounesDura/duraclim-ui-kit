@@ -26,7 +26,7 @@ const Container: React.FC<ContainerProps> = ({ children, maxWidth, padding }) =>
     styles.container,
     getMaxWidth(maxWidth),
     padding ? styles.padding : '',
-    className,
+
   ].filter(Boolean).join(' ');
 
   return (
