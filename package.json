@@ -1,6 +1,6 @@
 {
   "name": "duraclim-ui-kit",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
@@ -24,6 +24,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^12.1.2",

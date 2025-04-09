@@ -5,6 +5,11 @@ import postcss from "rollup-plugin-postcss";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import url from "@rollup/plugin-url";
+import alias from '@rollup/plugin-alias';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default [
   {
@@ -38,7 +43,12 @@ export default [
         inject: true,     
         minimize: true,
         sourceMap: true,
-      })
+      }),
+      alias({
+        entries: [
+          { find: '@', replacement: path.resolve(__dirname, 'src') },
+        ]
+      }),
     ],
     external: ["react", "react-dom"],
   },
@@ -47,4 +57,5 @@ export default [
     output: [{ file: "dist/index.d.ts", format: "es" }],
     plugins: [dts()],
   },
+  
 ];
