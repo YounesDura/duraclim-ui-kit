@@ -10,7 +10,9 @@ interface CardProps {
   isAdded?: boolean;
   mode?: 'select' | 'add';
   onEdit?: () => void;
-  onSelect?: () => void;
+  value?: string;
+  groupName?: string;
+  onChange?: (value: string) => void;
 }
 
 const Card = ({
@@ -18,14 +20,18 @@ const Card = ({
   title,
   price,
   itemsCount,
-  isSelected,
+  isSelected = false,
   isAdded,
   mode = 'select',
   onEdit,
-  onSelect,
+  value,
+  groupName,
+  onChange,
 }: CardProps) => {
   const handleSelect = () => {
-    onSelect?.();
+    if (mode === 'select' && value && onChange) {
+      onChange(value);
+    }
   };
 
   const handleEditClick = (e: React.MouseEvent) => {

@@ -68,12 +68,13 @@ const CardService = ({
       </div>
 
       <div className={styles.controls}>
-        <Button
-          className={styles.delete}
-          variant="cancel"
-          icon="🗑️"
+        <button 
+          className={styles.deleteX}
           onClick={onDelete}
-        />
+          aria-label="Delete"
+        >
+          ✕
+        </button>
 
         <div className={styles.counterGroup}>
           <label>Traps:</label>

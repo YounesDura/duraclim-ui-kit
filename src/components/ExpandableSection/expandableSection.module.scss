@@ -1,0 +1,84 @@
+@use '../../../styles/variables.scss' as *;
+
+.expandableSection {
+  background-color: $white;
+  border-radius: $radius-md;
+  padding: 1.5rem;
+  border: 1px solid $gray-light;
+  transition: all 0.3s ease;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        background-color: $green-success;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        color: white;
+      }
+
+      .title {
+        font-weight: 600;
+        font-size: 1rem;
+        color: $black;
+      }
+
+      .meta {
+        font-size: 0.875rem;
+        color: $gray-dark;
+        margin-left: 0.5rem;
+      }
+    }
+
+    .check {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      color: white;
+      font-size: 14px;
+    }
+
+    .arrow {
+      font-size: 1.2rem;
+      color: $gray-dark;
+      transition: transform 0.3s ease;
+    }
+
+    &.open .arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  .content {
+    margin-top: 1.25rem;
+    animation: fadeIn 0.3s ease;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
