@@ -108,7 +108,6 @@ const Input = ({
 
   return (
     <div className={combinedClasses}>
-      {icon && <div className={styles.icon}>{icon}</div>}
       {type === 'select' ? (
         <div className={styles.selectWrapper}>
           <div 
@@ -138,16 +137,19 @@ const Input = ({
           )}
         </div>
       ) : (
-        <input
-          type={type}
-          className={styles.input}
-          placeholder={placeholder}
-          value={value}
-          onChange={handleChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          {...props}
-        />
+        <>
+          {icon && <div className={styles.icon}>{icon}</div>}
+          <input
+            type={type}
+            className={styles.input}
+            placeholder={placeholder}
+            value={value}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            {...props}
+          />
+        </>
       )}
       {!isValid && errorMessage && (
         <div className={styles.errorMessage}>{errorMessage}</div>
