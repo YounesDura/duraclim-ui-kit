@@ -1,16 +1,22 @@
 import React, { useState, ReactNode } from 'react';
 import styles from './Inputs.module.scss';
 
-type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search' | 'date';
+type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search' | 'date' | 'select';
+
+interface Option {
+  value: string;
+  label: string;
+}
 
 interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement | HTMLSelectElement>, 'type' | 'onChange'> {
   type?: InputType;
   placeholder?: string;
   icon?: ReactNode;
-  options?: string[]; 
+  options?: Option[];
   value?: string;
   onChange?: (value: string, isValid: boolean) => void;
   customValidation?: (value: string) => boolean;
+  isSearchable?: boolean;
 }
 
 const Input = ({
@@ -22,11 +28,14 @@ const Input = ({
   onChange,
   customValidation,
   className,
+  isSearchable,
   ...props
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isValid, setIsValid] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const validateInput = (value: string): boolean => {
     if (!value) return true;
@@ -83,26 +92,51 @@ const Input = ({
     ${className || ''}
   `.trim();
 
+  const handleSelectClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleOptionSelect = (optionValue: string) => {
+    onChange?.(optionValue, true);
+    setIsOpen(false);
+    setSearchTerm('');
+  };
+
+  const filteredOptions = options?.filter(option => 
+    option.label.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className={combinedClasses}>
-      {options ? (
-        <select
-          className={styles.input}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          value={value}
-          onChange={handleChange}
-          {...props}
-        >
-          <option value="" disabled hidden>
-            {placeholder}
-          </option>
-          {options.map((opt, index) => (
-            <option key={`option-${opt}-${index}`} value={opt}>
-              {opt}
-            </option>
-          ))}
-        </select>
+      {icon && <div className={styles.icon}>{icon}</div>}
+      {type === 'select' ? (
+        <div className={styles.selectWrapper}>
+          <div 
+            className={styles.input}
+            onClick={handleSelectClick}
+          >
+            {icon && <div className={styles.icon}>{icon}</div>}
+            <span className={styles.selectText}>
+              {value ? options?.find(opt => opt.value === value)?.label : placeholder}
+            </span>
+          </div>
+          
+          {isOpen && (
+            <div className={styles.dropdown}>
+              <div className={styles.optionsList}>
+                {filteredOptions?.map((opt) => (
+                  <div
+                    key={opt.value}
+                    className={styles.option}
+                    onClick={() => handleOptionSelect(opt.value)}
+                  >
+                    {opt.label}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       ) : (
         <input
           type={type}
@@ -115,7 +149,6 @@ const Input = ({
           {...props}
         />
       )}
-      {icon && <div className={styles.icon}>{icon}</div>}
       {!isValid && errorMessage && (
         <div className={styles.errorMessage}>{errorMessage}</div>
       )}
