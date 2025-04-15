@@ -4,6 +4,7 @@ export { default as Button } from './components/Button/button';
 export { default as Card } from './components/Card/cards';
 export { default as CardService } from './components/CardService/cardService';
 export { default as Input } from './components/Inputs/Inputs';
+export { default as ExpandableSection } from './components/ExpandableSection/ExpandableSection';
 
 // Export layouts
 export { default as Container } from './layout/Container/Container';
