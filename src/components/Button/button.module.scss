@@ -189,3 +189,14 @@
     display: block;
   }
 }
+
+.deactivated {
+  opacity: 0.9;
+  cursor: not-allowed;
+  background-color: rgb(201, 201, 201);
+  pointer-events: none;
+  
+  &:hover {
+    opacity: 0.9;
+  }
+}

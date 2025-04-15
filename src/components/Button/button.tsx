@@ -14,6 +14,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   text?: string;
   icon?: string;
+  deactivated?: boolean;  // Add this prop
   dropdownOptions?: Array<{
     label: string;
     onClick: () => void;
@@ -24,6 +25,7 @@ const Button = ({
   variant = 'primary',
   text,
   icon,
+  deactivated = false,  // Add default value
   dropdownOptions,
   onClick,
   className,
@@ -40,38 +42,30 @@ const Button = ({
   );
 
   const combinedClasses = useMemo(() => 
-    `${styles.button} ${styles[variant] || ''} ${className || ''}`.trim(),
-    [variant, className]
+    `${styles.button} ${styles[variant] || ''} ${deactivated ? styles.deactivated : ''} ${className || ''}`.trim(),
+    [variant, className, deactivated]
   );
-
-  const renderContent = () => {
-    if (isDropdown) {
-      return (
-        <div className={styles.dropdownContent}>
-          {icon && <span className={styles.icon}>{icon}</span>}
-          {text && <span className={styles.text}>{text}</span>}
-          <span className={styles.arrow}>▼</span>
-        </div>
-      );
-    }
-
-    return (
-      <>
-        {icon && <span className={styles.icon}>{icon}</span>}
-        {text && <span className={styles.text}>{text}</span>}
-      </>
-    );
-  };
 
   return (
     <button
       type="button"
       className={combinedClasses}
-      onClick={variant !== 'deactivate' ? onClick : undefined}
-      disabled={variant === 'deactivate'}
+      onClick={!deactivated ? onClick : undefined}
+      disabled={deactivated}
       {...props}
     >
-      {renderContent()}
+      {isDropdown ? (
+        <div className={styles.dropdownContent}>
+          {icon && <span className={styles.icon}>{icon}</span>}
+          {text && <span className={styles.text}>{text}</span>}
+          <span className={styles.arrow}>▼</span>
+        </div>
+      ) : (
+        <>
+          {icon && <span className={styles.icon}>{icon}</span>}
+          {text && <span className={styles.text}>{text}</span>}
+        </>
+      )}
       {isDropdown && dropdownOptions && (
         <ul className={styles.dropdownMenu}>
           {dropdownOptions.map((option, index) => (
