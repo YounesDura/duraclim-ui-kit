@@ -10,3 +10,5 @@ export { default as Container } from './layout/Container/Container';
 export { default as Navbar } from './layout/Navbar/Navbar';
 export { default as Sidebar } from './layout/Sidebar/Sidebar';
 export { default as PageLayout } from './layout/Layout/PageLayout';
+export { default as Dialog } from './layout/Dialog/Dialog';
+export { default as Toast, type ToastType } from './components/Toast/toast';
