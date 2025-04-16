@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './card.module.scss';
 
 interface CardProps {
-  image: string;
+  image: string | React.ReactNode; 
   title: string;
   price?: number;
   itemsCount?: number;
@@ -13,7 +13,7 @@ interface CardProps {
   value?: string;
   groupName?: string;
   onChange?: (value: string) => void;
-  tag?: string; // Add tag prop
+  tag?: string; 
 }
 
 const Card = ({
@@ -78,7 +78,11 @@ const Card = ({
       </div>
 
       <div className={styles.imageWrapper}>
-        <img src={image} alt={title} />
+        {typeof image === 'string' ? (
+          <img src={image} alt={title} />
+        ) : (
+          image
+        )}
       </div>
 
       <div className={styles.title}>{title}</div>

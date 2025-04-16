@@ -16,7 +16,9 @@
 
 .main {
   flex: 1;
-  min-width: 0;
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 24px;
 }
 
 .sidebar {
