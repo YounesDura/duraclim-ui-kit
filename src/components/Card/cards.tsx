@@ -13,6 +13,7 @@ interface CardProps {
   value?: string;
   groupName?: string;
   onChange?: (value: string) => void;
+  tag?: string; // Add tag prop
 }
 
 const Card = ({
@@ -27,6 +28,7 @@ const Card = ({
   value,
   groupName,
   onChange,
+  tag,
 }: CardProps) => {
   const handleSelect = () => {
     if (mode === 'select' && value && onChange) {
@@ -47,6 +49,8 @@ const Card = ({
       className={`${styles.card} ${isSelected || isAdded ? styles.active : ''}`}
       onClick={handleSelect}
     >
+      {tag && <div className={styles.tag}>{tag}</div>}
+      
       <div className={styles.cardHeader}>
         {showRadio && (
           <div className={`${styles.radio} ${isSelected ? 'active' : ''}`}>
