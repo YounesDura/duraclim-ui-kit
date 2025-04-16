@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './cardService.module.scss';
-import Button from '../Button/button';
+
 
 interface CardServiceProps {
   image: string;
@@ -8,12 +8,12 @@ interface CardServiceProps {
   title: string;
   price: number;
   quantity: number;
-  traps: number;
+  serviceId: string;
+  housingType?: string;
   onQuantityChange?: (value: number) => void;
-  onTrapsChange?: (value: number) => void;
   onDelete?: () => void;
   onQuantityAction?: (type: 'increment' | 'decrement', value: number) => void;
-  onTrapsAction?: (type: 'increment' | 'decrement', value: number) => void;
+  onHousingTypeChange?: (serviceId: string, value: string) => void;
 }
 
 const CardService = ({
@@ -22,33 +22,24 @@ const CardService = ({
   title,
   price,
   quantity,
-  traps,
+  serviceId,
+  housingType,
   onQuantityChange,
-  onTrapsChange,
   onDelete,
   onQuantityAction,
-  onTrapsAction,
+  onHousingTypeChange,
 }: CardServiceProps) => {
-  const handleDecrement = (type: 'qty' | 'traps') => {
-    if (type === 'qty' && quantity > 1) {
+  // Remove traps-related code
+  const handleDecrement = () => {
+    if (quantity > 1) {
       onQuantityChange?.(quantity - 1);
       onQuantityAction?.('decrement', quantity - 1);
     }
-    if (type === 'traps' && traps > 0) {
-      onTrapsChange?.(traps - 1);
-      onTrapsAction?.('decrement', traps - 1);
-    }
   };
 
-  const handleIncrement = (type: 'qty' | 'traps') => {
-    if (type === 'qty') {
-      onQuantityChange?.(quantity + 1);
-      onQuantityAction?.('increment', quantity + 1);
-    }
-    if (type === 'traps') {
-      onTrapsChange?.(traps + 1);
-      onTrapsAction?.('increment', traps + 1);
-    }
+  const handleIncrement = () => {
+    onQuantityChange?.(quantity + 1);
+    onQuantityAction?.('increment', quantity + 1);
   };
 
   return (
@@ -77,20 +68,30 @@ const CardService = ({
         </button>
 
         <div className={styles.counterGroup}>
-          <label>Traps:</label>
-          <div className={styles.counter}>
-            <button onClick={() => handleDecrement('traps')}>–</button>
-            <span>{String(traps).padStart(2, '0')}</span>
-            <button onClick={() => handleIncrement('traps')}>＋</button>
+          <label>Type:</label>
+          <div className={styles.chipSelect}>
+            <select 
+              className={`${styles.select} ${!housingType ? styles.error : ''}`}
+              value={housingType || ''}
+              onChange={(e) => onHousingTypeChange?.(serviceId, e.target.value)}
+            >
+              <option value="">Select type</option>
+              <option value="studio">Studio</option>
+              <option value="3-1/2">3 1/2</option>
+              <option value="4-1/2">4 1/2</option>
+              <option value="5-1/2">5 1/2</option>
+              <option value="penthouse">Penthouse</option>
+              <option value="two-floor">Two Floor</option>
+            </select>
           </div>
         </div>
 
         <div className={styles.counterGroup}>
           <label>Qty:</label>
           <div className={styles.counter}>
-            <button onClick={() => handleDecrement('qty')}>–</button>
+            <button onClick={handleDecrement}>–</button>
             <span>{String(quantity).padStart(2, '0')}</span>
-            <button onClick={() => handleIncrement('qty')}>＋</button>
+            <button onClick={handleIncrement}>＋</button>
           </div>
         </div>
       </div>

@@ -133,3 +133,48 @@
 
   }
 }
+
+
+.chipSelect {
+  .select {
+    appearance: none;
+    background-color: #f6f6f6;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    padding: 6px 24px 6px 12px;
+    font-size: 0.9rem;
+    color: #333;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4' viewBox='0 0 8 4'%3E%3Cpath d='M0 0l4 4 4-4z' fill='%23333'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    transition: all 0.2s ease;
+    
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+    }
+
+    &.error {
+      border-color: #ff4d4f;
+      animation: shake 0.5s ease-in-out;
+    }
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.counterGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  label {
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+}
