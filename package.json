@@ -1,6 +1,6 @@
 {
   "name": "duraclim-ui-kit",
-  "version": "1.0.2%",
+  "version": "1.0.24",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
