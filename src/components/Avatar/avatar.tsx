@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styles from './avatar.module.scss';
 import fallbackImage from '@/assets/illustrations/person.png';
 
 type AvatarSize = 'sm' | 'md' | 'lg';
 
 interface AvatarProps {
-  image?: string;
+  image?: string | ReactNode;  // Modified to accept both string and ReactNode
   alt?: string;
   className?: string;
   size?: AvatarSize;
@@ -30,11 +30,19 @@ const Avatar = ({
       className={`${styles.avatarWrapper} ${className}`}
       style={{ width: `${dimensions}px`, height: `${dimensions}px` }}
     >
-      <img
-        src={image || fallbackImage}
-        alt={alt}
-        className={styles.avatarImage}
-      />
+      {typeof image === 'string' ? (
+        <img
+          src={image || fallbackImage}
+          alt={alt}
+          className={styles.avatarImage}
+        />
+      ) : image || (
+        <img
+          src={fallbackImage}
+          alt={alt}
+          className={styles.avatarImage}
+        />
+      )}
     </div>
   );
 };
