@@ -53,7 +53,7 @@ const Card = ({
       
       <div className={styles.cardHeader}>
         {showRadio && (
-          <div className={`${styles.radio} ${isSelected ? 'active' : ''}`}>
+          <div className={`${styles.radio} ${isSelected ? styles.active : ''}`}>
             {isSelected && <div className={styles.radioDot} />}
           </div>
         )}
