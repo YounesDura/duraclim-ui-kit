@@ -1,46 +1,110 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './cardService.module.scss';
-
 
 interface CardServiceProps {
   image: string;
   label?: 'low' | 'medium' | 'high';
   title: string;
   price: number;
-  quantity: number;
+  quantity?: number;
   serviceId: string;
   housingType?: string;
+  housingCategory?: 'casa' | 'condo';
+  hasVents?: boolean;
+  trapsCount?: number;
   onQuantityChange?: (value: number) => void;
+  onTrapsChange?: (value: number) => void;
   onDelete?: () => void;
   onQuantityAction?: (type: 'increment' | 'decrement', value: number) => void;
   onHousingTypeChange?: (serviceId: string, value: string) => void;
 }
+
+const condoTypes = ['3-1/2', '4-1/2', '5-1/2', 'penthouse', 'two-floor'];
 
 const CardService = ({
   image,
   label,
   title,
   price,
-  quantity,
+  quantity = 1,
   serviceId,
   housingType,
+  housingCategory,
+  hasVents,
+  trapsCount = 0,
   onQuantityChange,
+  onTrapsChange,
   onDelete,
   onQuantityAction,
   onHousingTypeChange,
 }: CardServiceProps) => {
-  // Remove traps-related code
+  const [localQuantity, setLocalQuantity] = useState(quantity);
+  const [localTrapsCount, setLocalTrapsCount] = useState(trapsCount);
+  const [localHousingType, setLocalHousingType] = useState(housingType || '');
+
   const handleDecrement = () => {
-    if (quantity > 1) {
-      onQuantityChange?.(quantity - 1);
-      onQuantityAction?.('decrement', quantity - 1);
+    if (localQuantity > 1) {
+      setLocalQuantity(prev => {
+        const newVal = prev - 1;
+        onQuantityChange?.(newVal);
+        onQuantityAction?.('decrement', newVal);
+        return newVal;
+      });
     }
   };
 
   const handleIncrement = () => {
-    onQuantityChange?.(quantity + 1);
-    onQuantityAction?.('increment', quantity + 1);
+    setLocalQuantity(prev => {
+      const newVal = prev + 1;
+      onQuantityChange?.(newVal);
+      onQuantityAction?.('increment', newVal);
+      return newVal;
+    });
   };
+
+  const handleTrapsDecrement = () => {
+    if (localTrapsCount > 0) {
+      setLocalTrapsCount(prev => {
+        const newVal = prev - 1;
+        onTrapsChange?.(newVal);
+        return newVal;
+      });
+    }
+  };
+
+  const handleTrapsIncrement = () => {
+    setLocalTrapsCount(prev => {
+      const newVal = prev + 1;
+      onTrapsChange?.(newVal);
+      return newVal;
+    });
+  };
+
+  const handleHousingTypeChange = (value: string) => {
+    setLocalHousingType(value);
+    onHousingTypeChange?.(serviceId, value);
+  };
+
+  const Counter = ({
+    label,
+    value,
+    onIncrement,
+    onDecrement,
+  }: {
+    label: string;
+    value: number;
+    onIncrement: () => void;
+    onDecrement: () => void;
+  }) => (
+    <div className={styles.counterGroup}>
+      <label>{label}</label>
+      <div className={styles.counter}>
+        <button onClick={onDecrement}>–</button>
+        <span>{String(value).padStart(2, '0')}</span>
+        <button onClick={onIncrement}>＋</button>
+      </div>
+    </div>
+  );
 
   return (
     <div className={styles.card}>
@@ -59,41 +123,43 @@ const CardService = ({
       </div>
 
       <div className={styles.controls}>
-        <button 
-          className={styles.deleteX}
-          onClick={onDelete}
-          aria-label="Delete"
-        >
+        <button className={styles.deleteX} onClick={onDelete} aria-label="Delete">
           ✕
         </button>
 
-        <div className={styles.counterGroup}>
-          <label>Type:</label>
-          <div className={styles.chipSelect}>
-            <select 
-              className={`${styles.select} ${!housingType ? styles.error : ''}`}
-              value={housingType || ''}
-              onChange={(e) => onHousingTypeChange?.(serviceId, e.target.value)}
-            >
-              <option value="">Select type</option>
-              <option value="studio">Studio</option>
-              <option value="3-1/2">3 1/2</option>
-              <option value="4-1/2">4 1/2</option>
-              <option value="5-1/2">5 1/2</option>
-              <option value="penthouse">Penthouse</option>
-              <option value="two-floor">Two Floor</option>
-            </select>
+        {housingCategory === 'condo' && (
+          <div className={styles.counterGroup}>
+            <label>Type:</label>
+            <div className={styles.chipSelect}>
+              <select
+                className={`${styles.select} ${!localHousingType ? styles.error : ''}`}
+                value={localHousingType}
+                onChange={(e) => handleHousingTypeChange(e.target.value)}
+              >
+                <option value="">Select type</option>
+                {condoTypes.map((type) => (
+                  <option key={type} value={type}>{type}</option>
+                ))}
+              </select>
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className={styles.counterGroup}>
-          <label>Qty:</label>
-          <div className={styles.counter}>
-            <button onClick={handleDecrement}>–</button>
-            <span>{String(quantity).padStart(2, '0')}</span>
-            <button onClick={handleIncrement}>＋</button>
-          </div>
-        </div>
+        {hasVents && (
+          <Counter
+            label="Traps:"
+            value={localTrapsCount}
+            onIncrement={handleTrapsIncrement}
+            onDecrement={handleTrapsDecrement}
+          />
+        )}
+
+        <Counter
+          label="Qty:"
+          value={localQuantity}
+          onIncrement={handleIncrement}
+          onDecrement={handleDecrement}
+        />
       </div>
     </div>
   );
