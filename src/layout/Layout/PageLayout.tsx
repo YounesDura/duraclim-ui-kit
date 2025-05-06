@@ -17,10 +17,8 @@ const PageLayout = ({
   return (
     <div className={`${styles.page} ${className}`}>
       <div className={styles.navbar}>{navbar}</div>
-      <div className={styles.content}>
-        <main className={styles.main}>{children}</main>
-        {sidebar && <aside className={styles.sidebar}>{sidebar}</aside>}
-      </div>
+      {sidebar && <div className={styles.sidebar}>{sidebar}</div>}
+      <main className={styles.main}>{children}</main>
     </div>
   );
 };

@@ -1,12 +1,16 @@
 .page {
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(139, 186, 255, 0.1);
+  position: relative;
 }
 
 .navbar {
+  position: fixed;
   top: 0;
-  background-color: #fff;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 50;
+  background-color: white;
+  border-bottom: 1px solid #eee;
 }
 
 .content {
@@ -15,11 +19,19 @@
 }
 
 .main {
-  flex: 1;
-  overflow: auto;
-  padding: 1rem;
-  border-radius: 24px;
+  padding-top: 64px;       // Same height as navbar
+  padding-right: 400px;    // Same width as sidebar
+  height: 100vh;
+  overflow-y: auto;
 }
-
 .sidebar {
+  position: fixed;
+  top: 64px;               // Below the navbar
+  right: 0;
+  bottom: 0;
+  width: 400px;
+  background-color: white;
+  border-left: 1px solid #eee;
+  overflow: hidden;        // You handle internal scroll in Sidebar
+  z-index: 40;
 }
