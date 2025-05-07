@@ -23,13 +23,15 @@
   padding-right: 400px;    // Same width as sidebar
   height: 100vh;
   overflow-y: auto;
+  background-color: rgba(139, 186, 255, 0.1);
 }
+
 .sidebar {
   position: fixed;
   top: 64px;               // Below the navbar
   right: 0;
   bottom: 0;
-  width: 400px;
+  width: 400px; 
   background-color: white;
   border-left: 1px solid #eee;
   overflow: hidden;        // You handle internal scroll in Sidebar

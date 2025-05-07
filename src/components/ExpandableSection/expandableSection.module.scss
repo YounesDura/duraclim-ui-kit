@@ -69,6 +69,8 @@
   .content {
     margin-top: 1.25rem;
     animation: fadeIn 0.3s ease;
+    max-height: 350px; // or any value you prefer
+    overflow-y: auto;
   }
 }
 

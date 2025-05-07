@@ -13,8 +13,8 @@ type ButtonVariant =
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   text?: string;
-  icon?: string;
-  deactivated?: boolean;  // Add this prop
+  icon?: React.ReactNode;
+  deactivated?: boolean;  
   dropdownOptions?: Array<{
     label: string;
     onClick: () => void;
