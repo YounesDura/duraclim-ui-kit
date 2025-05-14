@@ -6,10 +6,6 @@
 }
 
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   background-color: white;
   z-index: 50;
   border-bottom: 1px solid #eee;
@@ -26,7 +22,6 @@
   width: 400px;
   background-color: white;
   border-left: 1px solid #eee;
-
   height: 100%;
   overflow: hidden;
   flex-shrink: 0;
