@@ -1,26 +1,25 @@
+// layout/Sidebar.tsx
 import React from 'react';
-import styles from './Sidebar.module.scss';
+import './Sidebar.module.scss';
 
 interface SidebarProps {
   position?: 'left' | 'right';
-  children: React.ReactNode;
-  className?: string;
   maxWidth?: string;
+  className?: string;
+  children: React.ReactNode;
 }
 
 const Sidebar = ({
   position = 'right',
-  children,
+  maxWidth = '300px',
   className = '',
-  maxWidth,
+  children,
 }: SidebarProps) => {
-  const sidebarClass = `${styles.sidebar} ${position === 'left' ? styles.left : styles.right} ${className}`.trim();
+  const sidebarClass = `sidebar ${position === 'left' ? 'left' : 'right'} ${className}`;
 
   return (
     <aside className={sidebarClass} style={{ maxWidth }}>
-      <div >
-        {children}
-      </div>
+      {children}
     </aside>
   );
 };

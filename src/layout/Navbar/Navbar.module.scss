@@ -1,28 +1,61 @@
-.navbar {
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
-    
-  }
-  
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 
-  .inner {
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  width: 150px;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.right {
+  div {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    height: 100%;
+    gap: 1rem;
   }
-  
-  .logo {
-    display: flex;
-    width: 150px;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .right {
-    div {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-  }
+}
+
+/* ✅ ADD THESE: */
+
+.sidebar {
+  flex-shrink: 0;
+  height: 100vh;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.left {
+  order: 1;
+  border-right: 1px solid #eee;
+}
+
+.rightSidebar { // renamed to avoid class conflict with .right in navbar
+  order: 0;
+  border-left: 1px solid #eee;
+}
+
+.main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+}
