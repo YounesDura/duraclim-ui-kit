@@ -47,7 +47,7 @@ const Avatar: React.FC<AvatarProps> = ({
 
   return (
     <div
-      className={`${styles.avatarWrapper} ${className}`}
+      className={`${styles.avatarWrapper} ${styles.navbar} ${className}`}
       style={{ width: dimension, height: dimension }}
     >
       {image && !errored ? (
