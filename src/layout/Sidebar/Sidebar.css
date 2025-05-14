@@ -1,0 +1,11 @@
+.sidebar {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  background-color: #fff;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  z-index: 10;
+  flex-shrink: 0;
+}

@@ -1,8 +1,8 @@
+// layout/PageLayout.tsx
 import React, { isValidElement, ReactNode } from 'react';
 import styles from './PageLayout.module.scss';
 
 interface SidebarProps {
-  position?: 'left' | 'right';
   maxWidth?: string;
 }
 
@@ -11,17 +11,25 @@ interface PageLayoutProps {
   sidebar?: React.ReactElement<SidebarProps>;
   children: ReactNode;
   className?: string;
+  sidebarPosition?: 'left' | 'right'; 
 }
 
-const PageLayout = ({ navbar, sidebar, children, className = '' }: PageLayoutProps) => {
-  let sidebarPositionClass = styles.rightSidebar;
+const PageLayout = ({
+  navbar,
+  sidebar,
+  children,
+  className = '',
+  sidebarPosition = 'right',
+}: PageLayoutProps) => {
   let sidebarStyle = { width: '400px' };
 
   if (isValidElement(sidebar)) {
-    const { position = 'right', maxWidth = '400px' } = sidebar.props;
-    sidebarPositionClass = position === 'left' ? styles.left : styles.rightSidebar;
+    const { maxWidth = '400px' } = sidebar.props;
     sidebarStyle = { width: maxWidth };
   }
+
+  const sidebarPositionClass =
+    sidebarPosition === 'left' ? styles.leftSidebar : styles.rightSidebar;
 
   return (
     <div className={`${styles.page} ${className}`}>
