@@ -56,6 +56,11 @@ export default [
     input: "src/index.ts",
     output: [{ file: "dist/index.d.ts", format: "es" }],
     plugins: [dts()],
+    onwarn(warning, warn) {
+      // Ignore .scss unresolved import errors in declaration generation
+      if (warning.code === 'UNRESOLVED_IMPORT' && /\.scss$/.test(warning.source)) return;
+      warn(warning);
+    },
   },
   
 ];
